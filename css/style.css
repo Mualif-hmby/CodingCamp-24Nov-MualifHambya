@@ -1,5 +1,129 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  min-height: 100vh;
-  align-content: center;
-  justify-items: center;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: #fafafa;
+  color: #111;
+}
+
+.page {
+  max-width: 720px;
+  margin: 80px auto 60px;
+  padding: 0 16px;
+  text-align: center;
+}
+
+.todo-card {
+  margin-bottom: 32px;
+}
+
+.todo-form {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin: 12px 0 16px;
+}
+
+.todo-form input[type="text"],
+.todo-form input[type="date"] {
+  padding: 10px 12px;
+  border: 1px solid #444;
+  border-radius: 4px;
+  min-width: 180px;
+  font-size: 14px;
+}
+
+.todo-form input[type="date"] {
+  min-width: 130px;
+}
+
+.btn {
+  border: none;
+  border-radius: 4px;
+  padding: 10px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #fff;
+  transition: transform 0.08s ease, opacity 0.1s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+  opacity: 0.9;
+}
+
+.btn.add {
+  background: #16a34a;
+}
+.btn.danger {
+  background: #ef4444;
+}
+.btn.info {
+  background: #2563eb;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 10px;
+}
+
+.list-section h2 {
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+.todo-list {
+  list-style: none;
+  text-align: left;
+  padding-left: 4px;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+}
+
+.todo-meta {
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.empty {
+  text-align: left;
+  color: #555;
+  margin-top: 4px;
+}
+
+.footer {
+  margin-top: 24px;
+  color: #444;
+  font-size: 14px;
+}
+
+/* Mobile tweak */
+@media (max-width: 520px) {
+  .todo-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .todo-form input,
+  .btn.add {
+    width: 100%;
+  }
+  .actions {
+    flex-direction: column;
+    gap: 12px;
+  }
 }
