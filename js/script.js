@@ -1,58 +1,66 @@
-/// Temprorary storage for todo items
 let todos = [];
 
-function validateForm() {
-  /// Get input values
-  const todo = document.getElementById("todo-input").value;
-  const date = document.getElementById("todo-date").value;
+const form = document.getElementById("todo-form");
+const todoInput = document.getElementById("todo-input");
+const dateInput = document.getElementById("todo-date");
+const listEl = document.getElementById("todo-list");
+const emptyEl = document.getElementById("empty-state");
+const clearBtn = document.getElementById("clear-btn");
+const filterBtn = document.getElementById("filter-btn");
 
-  // Validate input todo and date
-  if (todo === "" || date === "") {
-    alert("Please fill in both the todo item and the due date.");
-  } else {
-    addTodo(todo, date);
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const text = todoInput.value.trim();
+  const date = dateInput.value;
+  if (!text) return;
+  todos.push({ text, date });
+  todoInput.value = "";
+  dateInput.value = "";
+  render();
+});
 
-    // Clear input fields after adding todo
-    document.getElementById("todo-input").value = "";
-    document.getElementById("todo-date").value = "";
+clearBtn.addEventListener("click", () => {
+  todos = [];
+  render();
+});
+
+filterBtn.addEventListener("click", () => {
+  if (!todos.length) return;
+  const keyword = prompt(
+    "Filter todo berisi kata apa? (kosongkan untuk batal)"
+  );
+  if (keyword === null) return; // batal
+  const term = keyword.trim().toLowerCase();
+  render(term);
+});
+
+function render(filterTerm = "") {
+  listEl.innerHTML = "";
+  const filtered = filterTerm
+    ? todos.filter((t) => t.text.toLowerCase().includes(filterTerm))
+    : todos;
+
+  if (!filtered.length) {
+    emptyEl.style.display = "block";
+    return;
   }
-}
 
-/// Function to add a new todo item
-function addTodo(todo, date) {
-  /// Create a new todo item object
-  const todoItem = {
-    task: todo,
-    date: date,
-  };
+  emptyEl.style.display = "none";
+  filtered.forEach((todo) => {
+    const li = document.createElement("li");
+    li.className = "todo-item";
 
-  /// Add the new todo item to the todos array
-  todos.push(todoItem);
-  renderTodos();
-}
+    const left = document.createElement("div");
+    left.textContent = todo.text;
 
-/// Function to render todo items to the DOM
-function renderTodos() {
-  const todoList = document.getElementById("todo-list");
+    const right = document.createElement("div");
+    right.className = "todo-meta";
+    right.textContent = todo.date ? todo.date : "No date";
 
-  // Clear existing list
-  todoList.innerHTML = "";
-
-  // Render each todo item
-  todos.forEach((todo, _) => {
-    todoList.innerHTML += `
-        <li>
-            <p class="text-2xl">${todo.task} <span class="text-sm text-gray-500">(${todo.date})</span></p>
-            <hr />
-        </li>`;
+    li.appendChild(left);
+    li.appendChild(right);
+    listEl.appendChild(li);
   });
 }
 
-/// Function to clear all todo items
-function clearTodos() {
-  todos = [];
-  renderTodos();
-}
-
-/// Function to filter todo items by date
-function filter() {}
+render();
