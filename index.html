@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Todo List - Yama</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="page">
+    <section class="todo-card">
+      <h1>My Todo List</h1>
+      <form id="todo-form" class="todo-form">
+        <input
+          type="text"
+          id="todo-input"
+          placeholder="Enter a new todo item"
+          required
+        />
+        <input type="date" id="todo-date" />
+        <button type="submit" class="btn add">Add Todo</button>
+      </form>
+
+      <div class="actions">
+        <button id="clear-btn" class="btn danger">Clear All Todos</button>
+        <button id="filter-btn" class="btn info">Filter Todos</button>
+      </div>
+    </section>
+
+    <section class="list-section">
+      <h2>List of Todos</h2>
+      <ul id="todo-list" class="todo-list"></ul>
+      <p id="empty-state" class="empty">No todos available</p>
+    </section>
+
+    <footer class="footer">
+      © 2025 Mualif Hambya. All rights reserved.
+    </footer>
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
