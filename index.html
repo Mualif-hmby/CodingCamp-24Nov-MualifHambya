@@ -3,37 +3,94 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Todo List - Yama</title>
+    <title>Todo List | RevoU</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <main class="page">
-      <section class="todo-card">
-        <h1>My Todo List</h1>
-        <form id="todo-form" class="todo-form">
-          <input
-            type="text"
-            id="todo-input"
-            placeholder="Enter a new todo item"
-            required
-          />
-          <input type="date" id="todo-date" />
-          <button type="submit" class="btn add">Add Todo</button>
+      <section class="app">
+        <header class="hero">
+          <p class="eyebrow">Focus and finish</p>
+          <div class="title-row">
+            <h1>Todo List</h1>
+            <button type="button" id="clear-btn" class="btn ghost">
+              Delete All
+            </button>
+          </div>
+          <p class="muted">
+            Track tasks, their due dates, and mark them done without leaving the
+            page.
+          </p>
+        </header>
+
+        <form id="todo-form" class="todo-form" novalidate>
+          <div class="form-grid">
+            <label class="field">
+              <span>Todo</span>
+              <input
+                type="text"
+                id="todo-input"
+                name="todo"
+                placeholder="Add meeting prep, ship feature, ..."
+                required
+              />
+            </label>
+            <label class="field">
+              <span>Due date</span>
+              <input type="date" id="todo-date" name="date" required />
+            </label>
+            <div class="field slim">
+              <span>&nbsp;</span>
+              <button type="submit" class="btn primary">Add Todo</button>
+            </div>
+          </div>
+          <p id="form-error" class="form-error" role="alert"></p>
         </form>
 
-        <div class="actions">
-          <button id="clear-btn" class="btn danger">Clear All Todos</button>
-          <button id="filter-btn" class="btn info">Filter Todos</button>
+        <div class="filter-bar">
+          <div class="filter-grid">
+            <div class="input-shell">
+              <input
+                type="search"
+                id="search-input"
+                placeholder="Search todo by text"
+              />
+            </div>
+            <div class="select-shell">
+              <label for="status-filter">Status</label>
+              <select id="status-filter">
+                <option value="all">All</option>
+                <option value="pending">Active</option>
+                <option value="done">Completed</option>
+              </select>
+            </div>
+            <div class="date-shell">
+              <label for="date-filter">Date</label>
+              <input type="date" id="date-filter" />
+            </div>
+          </div>
+          <button type="button" id="filter-btn" class="btn outline">
+            Reset Filters
+          </button>
         </div>
-      </section>
 
-      <section class="list-section">
-        <h2>List of Todos</h2>
-        <ul id="todo-list" class="todo-list"></ul>
-        <p id="empty-state" class="empty">No todos available</p>
-      </section>
+        <section class="list-section">
+          <div class="list-head">
+            <span class="col task">Task</span>
+            <span class="col date">Date</span>
+            <span class="col status">Status</span>
+            <span class="col action">Action</span>
+          </div>
+          <ul id="todo-list" class="todo-list" aria-live="polite"></ul>
+          <p id="empty-state" class="empty" aria-live="polite">
+            No todos available.
+          </p>
+        </section>
 
-      <footer class="footer">© 2024 Yama Roni. All rights reserved.</footer>
+        <footer class="footer">
+          © 2025 Mualif. All Right Reserved.
+        </footer>
+      </section>
     </main>
 
     <script src="js/script.js"></script>
